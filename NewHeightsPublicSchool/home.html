@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Heights Public School</title>
+    <link rel="icon" type="image/x-icon" href="SchoolLogo.png">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url(' schoolbg2.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.7); /* Ensure visibility on scrolling */
+            z-index: 1000;
+        }
+        header img {
+            height: 70px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: white;
+            flex-grow: 1;
+            text-align: center;
+        }
+        header nav {
+            display: flex;
+            gap: 20px;
+        }
+        header nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            margin-right: 30px; /* Adds space to prevent cutting off */
+        }
+        header nav a:hover {
+            text-decoration: underline;
+        }
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-align: left;
+            height: 100vh;
+            color: white;
+            padding: 0 50px;
+        }
+        .hero .text {
+            max-width: 50%;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin: 20px 0;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .hero .image {
+            max-width: 45%;
+        }
+        .hero .image img {
+            width: 100%;
+            border-radius: 15px;
+        }
+        section {
+            padding: 50px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        section h2 {
+            color: #4CAF50;
+            text-align: center;
+        }
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .feature {
+            flex: 1 1 300px;
+            text-align: center;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .feature img {
+            max-width: 100%;
+            height: 150px;
+            object-fit: contain;
+        }
+        .contact {
+            text-align: center;
+            padding: 20px;
+        }
+        .contact h2 {
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+        .contact p {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+        .address {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .address h2 {
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        .address p {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+        
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="SchoolLogo.png" alt="School Logo">
+        <h1>New Heights Public School</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <div class="text">
+            <h1>Your Kids Deserve The Best Education</h1>
+            <p>Active Learning, Expert Teachers & Safe Environment.</p>
+        </div>
+    </div>
+
+    <section>
+        <h2>Our Facilities</h2>
+        <div class="features">
+            <div class="feature">
+                <img src="library.jpg" alt="Library">
+                <h3>Modern Library</h3>
+                <p>Our library is equipped with the latest books and digital resources.</p>
+            </div>
+            <div class="feature">
+                <img src="sports.jpg" alt="Sports">
+                <h3>Sports Facilities</h3>
+                <p>We offer a wide range of sports activities for physical development.</p>
+            </div>
+            <div class="features">
+                <div class="feature">
+                    <img src="library.jpg" alt="Library">
+                    <h3>Modern Library</h3>
+                    <p>Our library is equipped with the latest books and digital resources.</p>
+                </div>
+                <div class="feature">
+                    <img src="sports.jpg" alt="Sports">
+                    <h3>Sports Facilities</h3>
+                    <p>We offer a wide range of sports activities for physical development.</p>
+                </div>
+            <div class="feature">
+                <img src="lab.jpg" alt="Laboratory">
+                <h3>Advanced Labs</h3>
+                <p>State-of-the-art labs for practical learning in sciences and technology.</p>
+            </div>
+            
+        </div>
+    </section>
+
+    
+
+    <section class="contact">
+        <h2>Contact Us</h2>
+        <p>Phone: +91 9340222911</p>
+        <p>Phone: +91 7024530105</p>
+        <p>Email: contact@newheights.edu</p>
+        <p>Instagram Page : newheightspublicschoolkhawasa</p>
+    </section>
+
+    <section class="address">
+        <h2>Our Address</h2>
+        <p><strong>Address:</strong> Thandla Road,Khawasa Dist-Jhabua(MP)</p>
+        <p><strong>Town:</strong> Khawasa</p>
+        <p><strong>Pincode:</strong>457772</p>
+    </section>
+    <footer>
+        <p>&copy; 2025 New Heights Public School. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
