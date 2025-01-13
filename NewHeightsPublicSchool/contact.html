@@ -10,7 +10,7 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: url(' schoolbg2.png') no-repeat center center fixed;
+            background: url('schoolbg2.png') no-repeat center center fixed;
             background-size: cover;
             color: #333;
             display: flex;
@@ -41,27 +41,27 @@
             padding: 10px 20px;
             background: rgba(0, 0, 0, 0.7);
             z-index: 1000;
+            flex-wrap: wrap;
         }
         header img {
             height: 50px;
         }
         header h1 {
             margin: 0;
-            font-size: 24px;
+            font-size: 1.8rem;
             color: white;
             flex-grow: 1;
             text-align: center;
         }
         header nav {
             display: flex;
-            gap: 20px;
+            gap: 15px;
         }
         header nav a {
             color: white;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
-            margin-right: 30px;
         }
         header nav a:hover {
             text-decoration: underline;
@@ -69,11 +69,11 @@
         .container {
             max-width: 1200px;
             margin: auto;
-            padding: 80px 20px 20px 20px; /* Adjust padding for header */
+            padding: 80px 20px 20px 20px;
         }
         h1 {
             text-align: center;
-            color:white;
+            color: white;
             margin-bottom: 20px;
         }
         .contact-details {
@@ -95,6 +95,36 @@
             padding: 10px;
             margin-top: auto;
         }
+
+        /* Media Queries for Responsiveness */
+        @media screen and (max-width: 768px) {
+            header img {
+                height: 40px;
+            }
+            header h1 {
+                font-size: 1.5rem;
+            }
+            header nav {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            header nav a {
+                font-size: 12px;
+            }
+        }
+        @media screen and (max-width: 480px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+            }
+            header h1 {
+                font-size: 1.2rem;
+                margin: 5px 0;
+            }
+            header nav {
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -102,8 +132,8 @@
         <img src="SchoolLogo.png" alt="School Logo">
         <h1>New Heights Public School</h1>
         <nav>
-            <a href=" home.html">Home</a>
-            <a href=" gallery.html">Gallery</a>
+            <a href="home.html">Home</a>
+            <a href="gallery.html">Gallery</a>
             <a href="#">Contact</a>
         </nav>
     </header>
@@ -111,16 +141,13 @@
     <div class="container">
         <h1>Contact Us</h1>
         <div class="contact-details">
-            <p><strong>Address:</strong>Thandla Road,Khawasa Dist-Jhabua(MP) Pin-457772</p>
+            <p><strong>Address:</strong> Thandla Road, Khawasa Dist-Jhabua(MP) Pin-457772</p>
             <p><strong>Phone:</strong> +91 9644420350</p>
             <p><strong>Email:</strong> info@newheights.edu</p>
             <p><strong>Office Hours:</strong> Monday to Friday, 9:00 AM - 5:00 PM</p>
             <p><strong>Principal's Office:</strong> principal@newheights.edu</p>
             <p><strong>Admission Queries:</strong> admissions@newheights.edu</p>
-            <span> </span>
-            <span> </span>
-            <span> </span>
-             <p><strong>DeveloperName</strong> : VatsalBairagi & Contact:702450105</p>
+            <p><strong>Developer Name:</strong> Vatsal Bairagi & Contact: 702450105</p>
         </div>
     </div>
 
