@@ -12,6 +12,9 @@
             background: url('schoolbg2.png') no-repeat center center fixed;
             background-size: cover;
             color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         ::-webkit-scrollbar {
@@ -37,8 +40,9 @@
             align-items: center;
             justify-content: space-between;
             padding: 10px 20px;
-            background: rgba(0, 0, 0, 0.7); /* Ensure visibility on scrolling */
+            background: rgba(0, 0, 0, 0.7);
             z-index: 1000;
+            flex-wrap: wrap;
         }
 
         header img {
@@ -47,7 +51,7 @@
 
         header h1 {
             margin: 0;
-            font-size: 20px;
+            font-size: 1.8rem;
             color: white;
             flex-grow: 1;
             text-align: center;
@@ -56,7 +60,6 @@
         header nav {
             display: flex;
             gap: 15px;
-            margin-right: 27px;
         }
 
         header nav a {
@@ -81,10 +84,6 @@
             padding: 0 20px;
         }
 
-        .hero .text {
-            max-width: 90%;
-        }
-
         .hero h1 {
             font-size: 2rem;
             margin: 20px 0;
@@ -94,11 +93,6 @@
             font-size: 1rem;
             margin-bottom: 20px;
             line-height: 1.6;
-        }
-
-        .hero .image img {
-            width: 100%;
-            border-radius: 15px;
         }
 
         section {
@@ -157,68 +151,58 @@
             color: white;
             text-align: center;
             padding: 10px;
+            margin-top: auto;
         }
 
         /* Media Queries for Mobile Devices */
         @media screen and (max-width: 768px) {
+            header img {
+                height: 40px;
+            }
+            header h1 {
+                font-size: 1.5rem;
+            }
             header nav {
                 flex-wrap: wrap;
-                justify-content: center;
                 gap: 10px;
             }
-
             .hero h1 {
                 font-size: 1.8rem;
             }
-
             .hero p {
                 font-size: 0.9rem;
             }
-
             section {
                 padding: 20px 10px;
             }
-
-            section h2 {
-                font-size: 1.2rem;
-            }
-
-            .feature {
-                padding: 10px;
-            }
-
-            .contact p, .address p {
-                font-size: 0.9rem;
+            .feature img {
+                max-width: 80px;
             }
         }
 
         @media screen and (max-width: 480px) {
-            header img {
-                height: 40px;
+            header {
+                flex-direction: column;
+                align-items: center;
             }
-
             header h1 {
-                font-size: 16px;
+                font-size: 1.2rem;
+                margin: 5px 0;
             }
-
+            header nav {
+                justify-content: center;
+            }
             header nav a {
                 font-size: 12px;
             }
-
             .hero h1 {
                 font-size: 1.5rem;
             }
-
             .hero p {
                 font-size: 0.8rem;
             }
-
             section {
                 padding: 15px 10px;
-            }
-
-            .feature img {
-                max-width: 80px;
             }
         }
     </style>
