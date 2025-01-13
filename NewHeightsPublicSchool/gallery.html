@@ -1,102 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gallery - New Heights Public School</title>
-    <link rel="icon" type="image/x-icon" href="SchoolLogo.png">
-
+    <link rel="icon" type="image/x-icon" href="SchoolLogo.png" />
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: url(' schoolbg2.png') no-repeat center center fixed;
-            background-size: cover;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh; /* Ensures the body takes full height */
-        }
-        ::-webkit-scrollbar {
-            display: none;
-        }
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: url("schoolbg2.png") no-repeat center center fixed;
+        background-size: cover;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: -1;
+      }
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        flex-wrap: wrap;
+      }
+      header img {
+        height: 50px;
+      }
+      header h1 {
+        margin: 0;
+        font-size: 1.8rem;
+        color: white;
+        flex-grow: 1;
+        text-align: center;
+      }
+      header nav {
+        display: flex;
+        gap: 15px;
+      }
+      header nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+      }
+      header nav a:hover {
+        text-decoration: underline;
+      }
+      .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 80px 20px 20px 20px;
+      }
+      h1 {
+        text-align: center;
+        color: white;
+        margin-bottom: 20px;
+      }
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 15px;
+      }
+      .gallery img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+      .gallery img:hover {
+        transform: scale(1.05);
+      }
+      footer {
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        text-align: center;
+        padding: 10px;
+        margin-top: auto;
+      }
 
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: -1;
-        }
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 20px;
-            background: rgba(0, 0, 0, 0.7); /* Ensure visibility on scrolling */
-            z-index: 1000;
-        }
+      /* Media Queries for Responsiveness */
+      @media screen and (max-width: 768px) {
         header img {
-            height: 50px;
+          height: 40px;
         }
         header h1 {
-            margin: 0;
-            font-size: 24px;
-            color: white;
-            flex-grow: 1;
-            text-align: center;
+          font-size: 1.5rem;
         }
         header nav {
-            display: flex;
-            gap: 20px;
+          flex-wrap: wrap;
+          gap: 10px;
         }
         header nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: bold;
-            margin-right: 30px;
+          font-size: 12px;
         }
-        header nav a:hover {
-            text-decoration: underline;
+      }
+      @media screen and (max-width: 480px) {
+        header {
+          flex-direction: column;
+          align-items: center;
         }
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 80px 20px 20px 20px; /* Adjust padding for header */
+        header h1 {
+          font-size: 1.2rem;
+          margin: 5px 0;
         }
-        h1 {
-            text-align: center;
-            color:white;
-            margin-bottom: 20px;
+        header nav {
+          justify-content: center;
         }
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 15px;
-        }
-        .gallery img {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-        .gallery img:hover {
-            transform: scale(1.05);
-        }
-        footer {
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            text-align: center;
-            padding: 10px;
-            margin-top: auto; /* Ensures footer sticks to the bottom */
-        }
+      }
     </style>
 </head>
 <body>
@@ -104,41 +132,40 @@
         <img src="SchoolLogo.png" alt="School Logo">
         <h1>New Heights Public School</h1>
         <nav>
-            <a href=" home.html">Home</a>
+            <a href="home.html">Home</a>
             <a href="#">Gallery</a>
-            <a href=" contact.html">Contact</a>
+            <a href="contact.html">Contact</a>
         </nav>
     </header>
 
     <div class="container">
         <h1>Gallery</h1>
         <div class="gallery">
-            <img src="Pictures\function1.jpg" alt="Annual Day Function">
-            <img src="Pictures\function2.jpg" alt="Sports Day">
-            <img src="Pictures\function3.jpg" alt="Science Fair">
-            <img src="Pictures\function4.jpg" alt="Art Competition">
-            <img src="Pictures\function5.jpg" alt="Music Performance">
-            <img src="Pictures\function6.jpg" alt="Classroom Activities">
-            <img src="Pictures\function7.jpg" alt="Graduation Ceremony">
-            <img src="Pictures\function8.jpg" alt="Field Trip">
-            <img src="Pictures\function9.jpg" alt="Annual Day Function">
-            <img src="Pictures\function10.jpg" alt="Sports Day">
-            <img src="Pictures\function11.jpg" alt="Science Fair">
-            <img src="Pictures\function12.jpg" alt="Art Competition">
-            <img src="Pictures\function13.jpg" alt="Music Performance">
-            <img src="Pictures\function14.jpg" alt="Sports Day">
-            <img src="Pictures\function15.jpg" alt="Science Fair">
-            <img src="Pictures\function16.jpg" alt="Art Competition">
-            <img src="Pictures\function17.jpg" alt="Music Performance">
-            <img src="Pictures\function18.jpg" alt="Annual Day Function">
-            <img src="Pictures\function19.jpg" alt="Sports Day">
-            <img src="Pictures\function20.jpg" alt="Science Fair">
-            <img src="Pictures\function21.jpg" alt="Art Competition">
-            <img src="Pictures\function22.jpg" alt="Music Performance">
-            <img src="Pictures\function23.jpg" alt="Classroom Activities">
-            <img src="Pictures\function24.jpg" alt="Graduation Ceremony">
-            <img src="Pictures\function25.jpg" alt="Field Trip">
-            
+            <img src="Pictures/function1.jpg" alt="Annual Day Function">
+            <img src="Pictures/function2.jpg" alt="Sports Day">
+            <img src="Pictures/function3.jpg" alt="Science Fair">
+            <img src="Pictures/function4.jpg" alt="Art Competition">
+            <img src="Pictures/function5.jpg" alt="Music Performance">
+            <img src="Pictures/function6.jpg" alt="Classroom Activities">
+            <img src="Pictures/function7.jpg" alt="Graduation Ceremony">
+            <img src="Pictures/function8.jpg" alt="Field Trip">
+            <img src="Pictures/function9.jpg" alt="Annual Day Function">
+            <img src="Pictures/function10.jpg" alt="Sports Day">
+            <img src="Pictures/function11.jpg" alt="Science Fair">
+            <img src="Pictures/function12.jpg" alt="Art Competition">
+            <img src="Pictures/function13.jpg" alt="Music Performance">
+            <img src="Pictures/function14.jpg" alt="Sports Day">
+            <img src="Pictures/function15.jpg" alt="Science Fair">
+            <img src="Pictures/function16.jpg" alt="Art Competition">
+            <img src="Pictures/function17.jpg" alt="Music Performance">
+            <img src="Pictures/function18.jpg" alt="Annual Day Function">
+            <img src="Pictures/function19.jpg" alt="Sports Day">
+            <img src="Pictures/function20.jpg" alt="Science Fair">
+            <img src="Pictures/function21.jpg" alt="Art Competition">
+            <img src="Pictures/function22.jpg" alt="Music Performance">
+            <img src="Pictures/function23.jpg" alt="Classroom Activities">
+            <img src="Pictures/function24.jpg" alt="Graduation Ceremony">
+            <img src="Pictures/function25.jpg" alt="Field Trip">
         </div>
     </div>
 
