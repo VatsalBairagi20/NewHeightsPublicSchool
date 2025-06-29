@@ -10,280 +10,272 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', Arial, sans-serif;
+            font-family: 'Orbitron', 'Arial', sans-serif;
         }
 
         body {
-            background: url('schoolbg2.png') no-repeat center center fixed;
-            background-size: cover;
-            color: #333;
+            background: #000;
+            color: #fff;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #4CAF50;
-            border-radius: 4px;
-        }
-
-        body::before {
-            content: '';
+        /* Video Background */
+        .video-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4));
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 255, 136, 0.2));
             z-index: -1;
         }
 
+        /* Header */
         header {
             position: fixed;
             top: 0;
             width: 100%;
+            padding: 20px 40px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 15px 30px;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(12px);
             z-index: 1000;
-            transition: background 0.3s ease;
         }
 
-        header.scrolled {
-            background: rgba(0, 0, 0, 0.9);
+        header .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         header img {
-            height: 60px;
-            transition: transform 0.3s ease;
-        }
-
-        header img:hover {
-            transform: scale(1.1);
+            height: 70px;
+            transition: transform 0.5s ease;
+            animation: spin 10s linear infinite;
         }
 
         header h1 {
-            font-size: 2rem;
-            color: white;
-            flex-grow: 1;
-            text-align: center;
+            font-size: 2.2rem;
+            color: #00ff88;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            animation: fadeInDown 1s ease;
-        }
-
-        header nav {
-            display: flex;
-            gap: 20px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px #00ff88;
         }
 
         header nav a {
-            color: white;
+            color: #fff;
             text-decoration: none;
-            font-size: 16px;
-            font-weight: 600;
-            padding: 8px 15px;
-            border-radius: 25px;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 30px;
             transition: all 0.3s ease;
+            position: relative;
+        }
+
+        header nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: #00ff88;
+            transition: width 0.3s ease;
+        }
+
+        header nav a:hover::after {
+            width: 100%;
         }
 
         header nav a:hover {
-            background: #4CAF50;
-            transform: translateY(-2px);
+            color: #00ff88;
+            transform: translateY(-3px);
         }
 
+        /* Hero Section */
         .hero {
             height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             text-align: center;
-            color: white;
             padding: 0 20px;
-            animation: fadeIn 1.5s ease;
-        }
-
-        .hero .text {
-            opacity: 0;
-            animation: slideUp 1s ease forwards 0.5s;
-        }
-
-        .hero marquee {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 10px;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin: 20px 0;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 4rem;
+            color: #fff;
+            text-shadow: 0 0 20px #00ff88, 0 0 40px #00ff88;
+            animation: neonGlow 2s ease-in-out infinite alternate;
+            margin-bottom: 20px;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            max-width: 600px;
+            font-size: 1.5rem;
+            max-width: 700px;
+            line-height: 1.6;
             margin-bottom: 30px;
+            animation: fadeIn 2s ease;
         }
 
-        .cta-button {
-            background: #4CAF50;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 25px;
+        .hero .cta-button {
+            background: #00ff88;
+            color: #000;
+            padding: 15px 40px;
+            border-radius: 50px;
             text-decoration: none;
+            font-size: 1.2rem;
             font-weight: bold;
+            box-shadow: 0 0 20px #00ff88;
             transition: all 0.3s ease;
-            animation: pulse 2s infinite;
         }
 
-        .cta-button:hover {
-            background: #45a049;
-            transform: scale(1.05);
-        }
-
-        section {
-            padding: 50px 20px;
-            background: rgba(255, 255, 255, 0.95);
-            margin: 20px;
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            animation: fadeInUp 1s ease;
-        }
-
-        section h2 {
-            color: #4CAF50;
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 30px;
-            position: relative;
-        }
-
-        section h2::after {
-            content: '';
-            width: 60px;
-            height: 4px;
-            background: #4CAF50;
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .feature {
+        .hero .cta-button:hover {
             background: #fff;
-            border-radius: 10px;
+            color: #000;
+            transform: scale(1.1);
+            box-shadow: 0 0 30px #fff;
+        }
+
+        /* Facilities Section */
+        .facilities {
+            padding: 80px 40px;
+            perspective: 1000px;
+        }
+
+        .facilities h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            color: #00ff88;
+            text-shadow: 0 0 10px #00ff88;
+            margin-bottom: 50px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
             padding: 20px;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
+            transition: transform 0.5s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(0, 255, 136, 0.3);
         }
 
-        .feature:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        .feature-card:hover {
+            transform: translateZ(20px) rotateX(5deg);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
         }
 
-        .feature img {
-            max-width: 120px;
+        .feature-card img {
+            max-width: 150px;
             height: auto;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             transition: transform 0.3s ease;
         }
 
-        .feature:hover img {
-            transform: rotate(5deg) scale(1.1);
+        .feature-card:hover img {
+            transform: scale(1.2) rotate(360deg);
         }
 
-        .feature h3 {
-            color: #333;
-            font-size: 1.3rem;
-            margin-bottom: 10px;
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 15px;
         }
 
+        .feature-card p {
+            font-size: 1rem;
+            color: #ddd;
+        }
+
+        /* Contact and Address */
         .contact, .address {
+            padding: 50px 20px;
             text-align: center;
-            padding: 30px;
+            background: rgba(0, 0, 0, 0.8);
+            margin: 20px;
+            border-radius: 15px;
         }
 
         .contact h2, .address h2 {
-            color: #4CAF50;
-            font-size: 1.8rem;
+            font-size: 2rem;
+            color: #00ff88;
             margin-bottom: 20px;
         }
 
         .contact p, .address p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin: 10px 0;
+        }
+
+        .contact a {
+            color: #00ff88;
+            text-decoration: none;
             transition: color 0.3s ease;
         }
 
-        .contact p:hover {
-            color: #4CAF50;
+        .contact a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #00ff88;
         }
 
+        /* Footer */
         footer {
-            background: rgba(0, 0, 0, 0.9);
-            color: white;
+            background: #000;
+            color: #fff;
             text-align: center;
             padding: 20px;
-            margin-top: auto;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            border-top: 2px solid #00ff88;
+        }
+
+        /* Animations */
+        @keyframes spin {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+
+        @keyframes neonGlow {
+            from { text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88, 0 0 30px #00ff88; }
+            to { text-shadow: 0 0 20px #00ff88, 0 0 30px #00ff88, 0 0 40px #00ff88; }
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-50px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
+        /* Responsive Design */
         @media screen and (max-width: 768px) {
             header {
-                padding: 10px 20px;
+                flex-direction: column;
+                padding: 15px;
             }
 
             header img {
@@ -291,135 +283,137 @@
             }
 
             header h1 {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
 
             header nav {
-                gap: 10px;
+                margin-top: 10px;
             }
 
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
             .hero p {
-                font-size: 1rem;
+                font-size: 1.2rem;
             }
 
-            .features {
+            .features-grid {
                 grid-template-columns: 1fr;
             }
         }
 
         @media screen and (max-width: 480px) {
-            header {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            header nav {
-                flex-direction: column;
-                gap: 8px;
-            }
-
             .hero h1 {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
 
-            .hero p {
-                font-size: 0.9rem;
+            .hero .cta-button {
+                padding: 10px 30px;
+                font-size: 1rem;
             }
 
-            .cta-button {
-                padding: 10px 20px;
+            .feature-card img {
+                max-width: 100px;
             }
         }
     </style>
 </head>
 <body>
+    <video autoplay muted loop class="video-bg">
+        <source src="school-video.mp4" type="video/mp4">
+        <!-- Fallback to image if video is unavailable -->
+        <img src="schoolbg2.png" alt="Background">
+    </video>
+    <div class="overlay"></div>
+
     <header>
-        <img src="SchoolLogo.png" alt="School Logo">
-        <h1>New Heights Public School</h1>
+        <div class="logo-container">
+            <img src="SchoolLogo.png" alt="School Logo">
+            <h1>New Heights Public School</h1>
+        </div>
         <nav>
-            <a href="#">Home</a>
+            <a href="#home">Home</a>
             <a href="gallery.html">Gallery</a>
             <a href="contact.html">Contact</a>
         </nav>
     </header>
 
-    <div class="hero">
-        <div class="text">
-            <marquee behavior="scroll" direction="left" scrollamount="10">
-                <h2>Admission Open for 2025-26</h2>
-            </marquee>
-            <h1>Your Kids Deserve The Best Education</h1>
-            <p>Active Learning, Expert Teachers & Safe Environment.</p>
-            <a href="contact.html" class="cta-button">Enroll Now</a>
-        </div>
-    </div>
+    <section class="hero" id="home">
+        <h1>Welcome to the Future of Education</h1>
+        <p>Empowering young minds with innovative learning, cutting-edge facilities, and a vibrant community.</p>
+        <a href="contact.html" class="cta-button">Join Us Today</a>
+    </section>
 
-    <section>
-        <h2>Our Facilities</h2>
-        <div class="features">
-            <div class="feature">
+    <section class="facilities">
+        <h2>Our World-Class Facilities</h2>
+        <div class="features-grid">
+            <div class="feature-card">
                 <img src="library.png" alt="Library">
-                <h3>Modern Library</h3>
-                <p>Our library is equipped with the latest books and digital resources.</p>
+                <h3>Digital Library</h3>
+                <p>Access thousands of books and digital resources in our state-of-the-art library.</p>
             </div>
-            <div class="feature">
+            <div class="feature-card">
                 <img src="sports.png" alt="Sports">
-                <h3>Sports Facilities</h3>
-                <p>We offer a wide range of sports activities for physical development.</p>
+                <h3>Sports Arena</h3>
+                <p>World-class sports facilities to nurture physical fitness and teamwork.</p>
             </div>
-            <div class="feature">
+            <div class="feature-card">
                 <img src="Bus.jpg" alt="Bus">
-                <h3>Bus Facilities</h3>
-                <p>We offer safe bus facilities for convenient transportation.</p>
+                <h3>Smart Transport</h3>
+                <p>Safe and reliable bus services with real-time tracking.</p>
             </div>
-            <div class="feature">
+            <div class="feature-card">
                 <img src="Roboticslab.png" alt="Robotics Lab">
                 <h3>Robotics Lab</h3>
-                <p>Our ATL lab encourages innovation and tinkering.</p>
+                <p>Innovate and create in our advanced ATL robotics lab.</p>
             </div>
-            <div class="feature">
+            <div class="feature-card">
                 <img src="lab.png" alt="Biology Lab">
-                <h3>Biology Lab</h3>
-                <p>Well-equipped biology lab for hands-on learning.</p>
+                <h3>Science Hub</h3>
+                <p>Hands-on learning in our fully equipped biology lab.</p>
             </div>
         </div>
     </section>
 
     <section class="contact">
-        <h2>Contact Us</h2>
+        <h2>Get in Touch</h2>
         <p>Phone: <a href="tel:+919644420350">+91 9644420350</a></p>
         <p>Email: <a href="mailto:contact@newheights.edu">contact@newheights.edu</a></p>
         <p>Instagram: <a href="https://instagram.com/newheightspublicschoolkhawasa" target="_blank">newheightspublicschoolkhawasa</a></p>
     </section>
 
     <section class="address">
-        <h2>Our Address</h2>
+        <h2>Visit Us</h2>
         <p><strong>Address:</strong> Thandla Road, Khawasa Dist-Jhabua (MP)</p>
         <p><strong>Town:</strong> Khawasa</p>
         <p><strong>Pincode:</strong> 457772</p>
     </section>
 
     <footer>
-        <溯>© 2025 New Heights Public School. All Rights Reserved.</p>
+        <p>© 2025 New Heights Public School. All Rights Reserved.</p>
     </footer>
 
     <script>
-        // Add scrolled class to header when scrolling
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+        // Parallax effect for feature cards
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.feature-card');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                card.style.transform = `translateZ(20px) rotateX(${y / 20}deg) rotateY(${-x / 20}deg)`;
+            });
         });
 
-        // Animate features on scroll
-        const features = document.querySelectorAll('.feature');
+        // Reset card transform on mouse leave
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateZ(0) rotateX(0) rotateY(0)';
+            });
+        });
+
+        // Scroll animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -427,16 +421,16 @@
                     entry.target.style.transform = 'translateY(0)';
                 }
             });
-        }, { threshold: 0.2 });
+        }, { threshold: 0.3 });
 
-        features.forEach(feature => {
-            feature.style.opacity = '0';
-            feature.style.transform = 'translateY(50px)';
-            feature.style.transition = 'all 0.5s ease';
-            observer.observe(feature);
+        document.querySelectorAll('.feature-card, .contact, .address').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
         });
 
-        // Smooth scroll for nav links
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
