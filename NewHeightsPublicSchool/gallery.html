@@ -1,179 +1,558 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery - New Heights Public School</title>
-    <link rel="icon" type="image/x-icon" href="SchoolLogo.png" />
+    <link rel="icon" type="image/x-icon" href="SchoolLogo.png">
     <style>
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: url("schoolbg2.png") no-repeat center center fixed;
-        background-size: cover;
-        color: #333;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-      }
-      ::-webkit-scrollbar {
-        display: none;
-      }
-      body::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: -1;
-      }
-      header {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px 20px;
-        background: rgba(0, 0, 0, 0.7);
-        z-index: 1000;
-        flex-wrap: wrap;
-      }
-      header img {
-        height: 50px;
-      pointer-events: none;      
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
 
-      }
-      header h1 {
-        margin: 0;
-        font-size: 1.8rem;
-        color: white;
-        flex-grow: 1;
-        text-align: center;
-      }
-      header nav {
-        display: flex;
-        gap: 15px;
-        margin-right:27px;
-      }
-      header nav a {
-        color: white;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: bold;
-      }
-      header nav a:hover {
-        text-decoration: underline;
-      }
-      .container {
-        max-width: 1200px;
-        margin: auto;
-        padding: 80px 20px 20px 20px;
-      }
-      h1 {
-        text-align: center;
-        color: white;
-        margin-bottom: 20px;
-      }
-      .gallery {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 15px;
-      }
-      .gallery img {
-        width: 100%;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s;
-      }
-      .gallery img:hover {
-        transform: scale(1.05);
-      }
-      footer {
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        text-align: center;
-        padding: 10px;
-        margin-top: auto;
-      }
+        body {
+            background: #fff8e1;
+            color: #1a2a44;
+            min-height: 100vh;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
 
-      /* Media Queries for Responsiveness */
-      @media screen and (max-width: 768px) {
-        header img {
-          height: 40px;
+        /* Sticky Announcement Bar */
+        .announcement {
+            position: sticky;
+            top: 0;
+            background: #f4c430;
+            color: #1a2a44;
+            text-align: center;
+            padding: 10px;
+            z-index: 999;
+            font-size: 1.1rem;
+            font-weight: bold;
         }
-        header h1 {
-          font-size: 1.5rem;
+
+        /* Circular Navigation */
+        .nav-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
         }
-        header nav {
-          flex-wrap: wrap;
-          gap: 10px;
+
+        .nav-toggle {
+            width: 60px;
+            height: 60px;
+            background: #1a2a44;
+            color: #f4c430;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 24px;
+            transition: transform 0.4s ease, box-shadow 0.3s ease;
         }
-        header nav a {
-          font-size: 12px;
+
+        .nav-toggle:hover {
+            transform: rotate(90deg);
+            box-shadow: 0 0 15px rgba(244, 196, 48, 0.5);
         }
-      }
-      @media screen and (max-width: 480px) {
-        header {
-          flex-direction: column;
-          align-items: center;
+
+        .nav-toggle::after {
+            content: '☰';
         }
-        header h1 {
-          font-size: 1.2rem;
-          margin: 5px 0;
+
+        .nav-toggle.open::after {
+            content: '✕';
         }
-        header nav {
-          justify-content: center;
+
+        .nav-menu {
+            position: absolute;
+            top: 70px;
+            right: 0;
+            background: #1a2a44;
+            border-radius: 20px;
+            padding: 20px;
+            display: none;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            animation: slideDown 0.4s ease;
         }
-      }
+
+        .nav-menu.active {
+            display: flex;
+        }
+
+        .nav-menu a {
+            color: #f4c430;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            border-radius: 10px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            background: #f4c430;
+            color: #1a2a44;
+            transform: translateX(5px);
+        }
+
+        /* Gallery Section */
+        .gallery-container {
+            max-width: 1200px;
+            margin: 80px auto 20px;
+            padding: 0 20px;
+        }
+
+        .gallery-container h1 {
+            font-size: 2.7rem;
+            text-align: center;
+            color: #1a2a44;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .gallery-container h1::after {
+            content: '';
+            width: 100px;
+            height: 4px;
+            background: #f4c430;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .filter-buttons button {
+            padding: 10px 20px;
+            background: #1a2a44;
+            color: #f4c430;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .filter-buttons button:hover,
+        .filter-buttons button.active {
+            background: #f4c430;
+            color: #1a2a44;
+            transform: scale(1.05);
+        }
+
+        /* Masonry Gallery */
+        .gallery {
+            column-count: 3;
+            column-gap: 15px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 15px;
+            break-inside: avoid;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(244, 196, 48, 0.5);
+        }
+
+        .gallery-item .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 42, 68, 0.8);
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .caption {
+            opacity: 1;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(244, 196, 48, 0.5);
+        }
+
+        .lightbox .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #f4c430;
+            font-size: 30px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox .close:hover {
+            transform: scale(1.2);
+        }
+
+        .lightbox .prev,
+        .lightbox .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #f4c430;
+            font-size: 40px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox .prev:hover,
+        .lightbox .next:hover {
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        .lightbox .prev {
+            left: 20px;
+        }
+
+        .lightbox .next {
+            right: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a2a44;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            font-size: 1rem;
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .gallery {
+                column-count: 2;
+            }
+
+            .gallery-container h1 {
+                font-size: 2.2rem;
+            }
+
+            .filter-buttons {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .gallery {
+                column-count: 1;
+            }
+
+            .nav-toggle {
+                width: 50px;
+                height: 50px;
+            }
+
+            .gallery-container h1 {
+                font-size: 1.8rem;
+            }
+
+            .filter-buttons button {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <img src="SchoolLogo.png" alt="School Logo">
-        <h1>New Heights Public School</h1>
-        <nav>
+    <div class="announcement">Admission Open for 2025-26! Contact us now!</div>
+
+    <div class="nav-container">
+        <div class="nav-toggle">☰</div>
+        <div class="nav-menu">
             <a href="home.html">Home</a>
             <a href="#">Gallery</a>
             <a href="contact.html">Contact</a>
-        </nav>
-    </header>
-
-    <div class="container">
-        <h1>Gallery</h1>
-        <div class="gallery">
-            <img src="Pictures/function1.jpg" alt="Annual Day Function">
-            <img src="Pictures/function2.jpg" alt="Sports Day">
-            <img src="Pictures/function3.jpg" alt="Science Fair">
-            <img src="Pictures/function4.jpg" alt="Art Competition">
-            <img src="Pictures/function5.jpg" alt="Music Performance">
-            <img src="Pictures/function6.jpg" alt="Classroom Activities">
-            <img src="Pictures/function7.jpg" alt="Graduation Ceremony">
-            <img src="Pictures/function8.jpg" alt="Field Trip">
-            <img src="Pictures/function9.jpg" alt="Annual Day Function">
-            <img src="Pictures/function10.jpg" alt="Sports Day">
-            <img src="Pictures/function11.jpg" alt="Science Fair">
-            <img src="Pictures/function12.jpg" alt="Art Competition">
-            <img src="Pictures/function13.jpg" alt="Music Performance">
-            <img src="Pictures/function14.jpg" alt="Sports Day">
-            <img src="Pictures/function15.jpg" alt="Science Fair">
-            <img src="Pictures/function16.jpg" alt="Art Competition">
-            <img src="Pictures/function17.jpg" alt="Music Performance">
-            <img src="Pictures/function18.jpg" alt="Annual Day Function">
-            <img src="Pictures/function19.jpg" alt="Sports Day">
-            <img src="Pictures/function20.jpg" alt="Science Fair">
-            <img src="Pictures/function21.jpg" alt="Art Competition">
-            <img src="Pictures/function22.jpg" alt="Music Performance">
-            <img src="Pictures/function23.jpg" alt="Classroom Activities">
-            <img src="Pictures/function24.jpg" alt="Graduation Ceremony">
-            <img src="Pictures/function25.jpg" alt="Field Trip">
         </div>
     </div>
 
+    <div class="gallery-container">
+        <h1>Our Moments</h1>
+        <div class="filter-buttons">
+            <button data-filter="all" class="active">All</button>
+            <button data-filter="events">Events</button>
+            <button data-filter="sports">Sports</button>
+            <button data-filter="academics">Academics</button>
+        </div>
+        <div class="gallery">
+            <div class="gallery-item" data-category="events">
+                <img src="Pictures/function1.jpg" alt="Annual Day Function">
+                <div class="caption">Annual Day Function</div>
+            </div>
+            <div class="gallery-item" data-category="sports">
+                <img src="Pictures/function2.jpg" alt="Sports Day">
+                <div class="caption">Sports Day</div>
+            </div>
+            <div class="gallery-item" data-category="academics">
+                <img src="Pictures/function3.jpg" alt="Science Fair">
+                <div class="caption">Science Fair</div>
+            </div>
+            <div class="gallery-item" data-category="events">
+                <img src="Pictures/function4.jpg" alt="Art Competition">
+                <div class="caption">Art Competition</div>
+            </div>
+            <div class="gallery-item" data-category="events">
+                <img src="Pictures/function5.jpg" alt="Music Performance">
+                <div class="caption">Music Performance</div>
+            </div>
+            <div class="gallery-item" data-category="academics">
+                <img src="Pictures/function6.jpg" alt="Classroom Activities">
+                <div class="caption">Classroom Activities</div>
+            </div>
+            <div class="gallery-item" data-category="events">
+                <img src="Pictures/function7.jpg" alt="Graduation Ceremony">
+                <div class="caption">Graduation Ceremony</div>
+            </div>
+            <div class="gallery-item" data-category="events">
+                <img src="Pictures/function8.jpg" alt="Field Trip">
+                <div class="caption">Field Trip</div>
+            </div>
+            <div class="gallery-item" data-category="events">
+                <img src="Pictures/function9.jpg" alt="Annual Day Function">
+                <div class="caption">Annual Day Function</div>
+            </div>
+            <div class="gallery-item" data-category="sports">
+                <img src="Pictures/function10.jpg" alt="Sports Day">
+                <div class="caption">Sports Day</div>
+            </div>
+            <div class="gallery-item" data-category="academics">
+                <img src="Pictures/function11.jpg" alt="Science Fair">
+                <div class="caption">Science Fair</div>
+            </div>
+            <div class="gallery-item" data-category="events">
+                <img src="Pictures/function12.jpg" alt="Art Competition">
+                <div class="caption">Art Competition</div>
+            </div>
+            <div class="gallery-item" data-category="events">
+                <img src="Pictures/function13.jpg" alt="Music Performance">
+                <div class="caption">Music Performance</div>
+            </div>
+            <div class="gallery-item" data-category="sports">
+                <img src="Pictures/function14.jpg" alt="Sports Day">
+                <div class="caption">Sports Day</div>
+            </div>
+            <div class="gallery-item" data-category="academics">
+                <img src="Pictures/function15.jpg" alt="Science Fair">
+                <div class="caption">Science Fair</div>
+            </div>
+            <div class="gallery-item" data-category="events">
+                <img src="Pictures/function16.jpg" alt="Art Competition">
+                <div class="caption">Art Competition</div>
+            </div>
+            <div class="gallery-item" data-category="events">
+                <img src="Pictures/function17.jpg" alt="Music Performance">
+                <div class="caption">Music Performance</div>
+            </div>
+            <div class="gallery-item" data-category="events">
+                <img src="Pictures/function18.jpg" alt="Annual Day Function">
+                <div class="caption">Annual Day Function</div>
+            </div>
+            <div class="gallery-item" data-category="sports">
+                <img src="Pictures/function19.jpg" alt="Sports Day">
+                <div class="caption">Sports Day</div>
+            </div>
+            <div class="gallery-item" data-category="academics">
+                <img src="Pictures/function20.jpg" alt="Science Fair">
+                <div class="caption">Science Fair</div>
+            </div>
+            <div class="gallery-item" data-category="events">
+                <img src="Pictures/function21.jpg" alt="Art Competition">
+                <div class="caption">Art Competition</div>
+            </div>
+            <div class="gallery-item" data-category="events">
+                <img src="Pictures/function22.jpg" alt="Music Performance">
+                <div class="caption">Music Performance</div>
+            </div>
+            <div class="gallery-item" data-category="academics">
+                <img src="Pictures/function23.jpg" alt="Classroom Activities">
+                <div class="caption">Classroom Activities</div>
+            </div>
+            <div class="gallery-item" data-category="events">
+                <img src="Pictures/function24.jpg" alt="Graduation Ceremony">
+                <div class="caption">Graduation Ceremony</div>
+            </div>
+            <div class="gallery-item" data-category="events">
+                <img src="Pictures/function25.jpg" alt="Field Trip">
+                <div class="caption">Field Trip</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lightbox">
+        <span class="close">✕</span>
+        <span class="prev">←</span>
+        <img src="" alt="Lightbox Image">
+        <span class="next">→</span>
+    </div>
+
     <footer>
-        <p>&copy; 2025 New Heights Public School. All Rights Reserved.</p>
+        <p>© 2025 New Heights Public School. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        // Toggle Navigation
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('open');
+        });
+
+        // Gallery Filter
+        const filterButtons = document.querySelectorAll('.filter-buttons button');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filter = button.getAttribute('data-filter');
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'inline-block';
+                        item.style.opacity = '0';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transition = 'opacity 0.5s ease';
+                        }, 100);
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Lightbox Functionality
+        const lightbox = document.querySelector('.lightbox');
+        const lightboxImg = lightbox.querySelector('img');
+        const closeBtn = lightbox.querySelector('.close');
+        const prevBtn = lightbox.querySelector('.prev');
+        const nextBtn = lightbox.querySelector('.next');
+        let currentIndex = 0;
+
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                currentIndex = index;
+                lightboxImg.src = item.querySelector('img').src;
+                lightbox.classList.add('active');
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+            lightboxImg.src = galleryItems[currentIndex].querySelector('img').src;
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % galleryItems.length;
+            lightboxImg.src = galleryItems[currentIndex].querySelector('img').src;
+        });
+
+        // Close lightbox on click outside image
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+            }
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('open');
+            });
+        });
+
+        // Scroll Animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.2 });
+
+        galleryItems.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'all 0.6s ease';
+            observer.observe(item);
+        });
+    </script>
 </body>
 </html>
