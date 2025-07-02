@@ -3,13 +3,12 @@ To Access Website click to given link : https://nhps.netlify.app/
 
 ----------------------------------PC View---------------------------------------
 Home page :
-![IMG-20250116-WA0009](https://github.com/user-attachments/assets/bc7dd907-dbc9-41e3-83da-67f4e3b34941)
-![WhatsApp Image 2025-01-16 at 10 16 11_1436018e](https://github.com/user-attachments/assets/e6933d1b-0c57-4986-8b00-e3327d18c4e9)
+![image](https://github.com/user-attachments/assets/8339bec4-d735-44d7-a374-f9aa4cf597d3)
 
 Gallery page :
-![WhatsApp Image 2025-01-16 at 10 16 13_bb84d022](https://github.com/user-attachments/assets/efa704f8-a42d-4f2b-a50e-f3c4673bda06)
+![image](https://github.com/user-attachments/assets/dc79b3f0-5c5b-4f4c-a6d1-44c5488a5b10)
 
 Contact page:
-![WhatsApp Image 2025-01-16 at 10 16 12_8cfc3264](https://github.com/user-attachments/assets/6c33c782-1248-47f7-a7e9-acd59e186824)
+![image](https://github.com/user-attachments/assets/d96b003d-6d05-4879-8e46-9232d395062c)
 
 
